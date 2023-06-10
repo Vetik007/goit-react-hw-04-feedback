@@ -8,13 +8,26 @@ import Notification from './Notification/Notification';
 import css from './App.module.css';
 
 const App = () => {
+  // Хук useState повертає пару значень: поточне значення стану та функцію, що дозволяє оновити цей стан
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
+  // функція яка обробляє подію кліка та оновлює значення стану.
+
   const handleFeedbackClick = event => {
     const feedbackType = event.target.name;
 
+    // обробка події та оновлення стану за допомогою if/else
+    // if (feedbackType === 'good') {
+    //   setGood(prevGood => prevGood + 1);
+    // } else if (feedbackType === 'neutral') {
+    //   setNeutral(prevNeutral => prevNeutral + 1);
+    // } else if (feedbackType === 'bad') {
+    //   setBad(prevBad => prevBad + 1);
+    // }
+
+    // обробка події та оновлення стану за допомогою switch/case
     switch (feedbackType) {
       case 'good':
         setGood(prevGood => prevGood + 1);
@@ -32,11 +45,13 @@ const App = () => {
         break;
     }
   };
-
+  // функція яка підраховує загальну кількість відгуків
   const countTotalFeedback = () => {
     return good + neutral + bad;
   };
+  // console.log(countTotalFeedback());
 
+  // функція яка підраховує % позитивних відгуків
   const countPositiveFeedbackPercentage = () => {
     const totalFeedback = countTotalFeedback();
     return totalFeedback > 0 ? Math.round((good / totalFeedback) * 100) : 0;
@@ -70,7 +85,7 @@ const App = () => {
 export default App;
 
 // =========================================================================
-// export class App extends Component {
+// class App extends Component {
 //   state = {
 //     good: 0,
 //     neutral: 0,
@@ -78,7 +93,6 @@ export default App;
 //   };
 
 // handleFeedbackClick = event => {
-//   console.log(event.target.value);
 //   console.log(event.target.value);
 //   const feedbackType = event.target.name;
 //   console.log(feedbackType);
